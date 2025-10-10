@@ -44,12 +44,12 @@ const Contact = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="text-5xl font-extrabold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400"
+        className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-8 sm:mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 px-4"
       >
         📬 Contact Me
       </motion.h2>
 
-      <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
+      <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 px-4">
         {/* Glassmorphic Form */}
         <motion.form
           ref={form}
@@ -58,31 +58,31 @@ const Contact = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="p-8 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-lg"
+          className="p-4 sm:p-6 lg:p-8 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-lg"
         >
           <input
             type="text"
             name="user_name"
             placeholder="Your Name"
             required
-            className="w-full mb-4 p-3 rounded-lg bg-white/20 border border-white/30 placeholder-gray-300 text-white"
+            className="w-full mb-4 p-3 rounded-lg bg-white/20 border border-white/30 placeholder-gray-300 text-white text-sm sm:text-base"
           />
           <input
             type="email"
             name="user_email"
             placeholder="Your Email"
             required
-            className="w-full mb-4 p-3 rounded-lg bg-white/20 border border-white/30 placeholder-gray-300 text-white"
+            className="w-full mb-4 p-3 rounded-lg bg-white/20 border border-white/30 placeholder-gray-300 text-white text-sm sm:text-base"
           />
           <textarea
             name="message"
             placeholder="Your Message"
             required
-            className="w-full mb-4 p-3 rounded-lg bg-white/20 border border-white/30 placeholder-gray-300 text-white h-32"
+            className="w-full mb-4 p-3 rounded-lg bg-white/20 border border-white/30 placeholder-gray-300 text-white h-24 sm:h-32 text-sm sm:text-base"
           />
           <button
             type="submit"
-            className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-pink-500 text-white shadow-md hover:scale-105 transition"
+            className="w-full px-4 sm:px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-pink-500 text-white shadow-md hover:scale-105 transition text-sm sm:text-base"
           >
             Send Message
           </button>
@@ -94,12 +94,12 @@ const Contact = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="flex flex-col justify-center items-center gap-8"
+          className="flex flex-col justify-center items-center gap-6 sm:gap-8"
         >
-          <p className="text-lg text-gray-300 text-center">
-            Let’s connect on my socials 🚀
+          <p className="text-base sm:text-lg text-gray-300 text-center">
+            Let's connect on my socials 🚀
           </p>
-          <div className="flex gap-6 text-3xl">
+          <div className="flex gap-4 sm:gap-6 text-2xl sm:text-3xl">
             <motion.a
               href="https://linkedin.com/in/neel-dhoble-965388257/"
               target="_blank"
@@ -126,14 +126,14 @@ const Contact = () => {
             </motion.a>
           </div>
 
-          {/* Future: Mapbox/Leaflet integration here */}
-            <div className="w-full h-56 rounded-xl overflow-hidden border border-white/20">
-                <iframe
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=79.6270%2C21.1520%2C79.7170%2C21.2420&layer=mapnik&marker=21.1820%2C79.6670"
-                    className="w-full h-full"
-                    title="map"
-                ></iframe>
-            </div>
+          {/* Map */}
+          <div className="w-full h-48 sm:h-56 rounded-xl overflow-hidden border border-white/20">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=79.6270%2C21.1520%2C79.7170%2C21.2420&layer=mapnik&marker=21.1820%2C79.6670"
+              className="w-full h-full"
+              title="map"
+            ></iframe>
+          </div>
 
         </motion.div>
       </div>

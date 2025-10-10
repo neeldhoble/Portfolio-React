@@ -41,18 +41,18 @@ const Education = () => {
         initial={{ opacity: 0, y: -50 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="text-4xl font-extrabold text-center mb-16 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+        className="text-3xl sm:text-4xl font-extrabold text-center mb-12 sm:mb-16 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent px-4"
       >
         🎓 My Education Journey
       </motion.h2>
 
       {/* Timeline */}
-      <div className="relative w-11/12 max-w-6xl mx-auto flex">
-        {/* Vertical Line */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-indigo-400 via-purple-400 to-pink-400 rounded-full"></div>
+      <div className="relative w-11/12 max-w-6xl mx-auto flex flex-col lg:flex-row">
+        {/* Vertical Line - Hidden on mobile, visible on desktop */}
+        <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-indigo-400 via-purple-400 to-pink-400 rounded-full"></div>
 
         {/* Timeline Content */}
-        <div className="flex-1">
+        <div className="flex-1 lg:w-2/3">
           {educationData.map((edu, index) => (
             <motion.div
               key={index}
@@ -63,18 +63,18 @@ const Education = () => {
                 delay: index * 0.3,
                 ease: "easeOut",
               }}
-              className={`mb-12 flex justify-${
+              className={`mb-8 sm:mb-12 flex justify-center lg:justify-${
                 index % 2 === 0 ? "start" : "end"
               } w-full`}
             >
-              <div className="w-1/2 px-6">
-                <div className="bg-gray-800/60 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-lg hover:scale-105 transition-transform duration-300">
+              <div className="w-full lg:w-1/2 px-4 lg:px-6">
+                <div className="bg-gray-800/60 backdrop-blur-lg border border-white/10 rounded-2xl p-4 sm:p-6 shadow-lg hover:scale-105 transition-transform duration-300">
                   <div className="flex items-center gap-3 mb-3">
                     {edu.icon}
-                    <h3 className="text-2xl font-bold">{edu.title}</h3>
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold">{edu.title}</h3>
                   </div>
-                  <p className="text-sm text-gray-300 mb-2">{edu.year}</p>
-                  <p className="text-gray-400">{edu.description}</p>
+                  <p className="text-xs sm:text-sm text-gray-300 mb-2">{edu.year}</p>
+                  <p className="text-sm sm:text-base text-gray-400">{edu.description}</p>
                 </div>
               </div>
             </motion.div>
@@ -86,32 +86,34 @@ const Education = () => {
           initial={{ opacity: 0, x: 100 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="hidden lg:flex flex-col items-center justify-center w-1/3 pl-10"
+          className="flex lg:flex-col items-center justify-center w-full lg:w-1/3 lg:pl-10 mt-8 lg:mt-0"
         >
           <motion.div
             animate={{ rotate: [0, 10, -10, 0] }}
             transition={{ repeat: Infinity, duration: 6 }}
-            className="w-40 h-40 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-2xl"
+            className="w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-2xl"
           >
-            <GraduationCap className="w-16 h-16 text-white" />
+            <GraduationCap className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
           </motion.div>
 
-          <p className="mt-6 text-xl font-semibold text-gray-300">
-            Learning is a Journey, Not a Destination 🚀
-          </p>
+          <div className="ml-4 lg:ml-0 lg:text-center">
+            <p className="text-base sm:text-lg lg:text-xl font-semibold text-gray-300">
+              Learning is a Journey, Not a Destination 🚀
+            </p>
 
-          {/* Animated Counter */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 1.5, delay: 0.5 }}
-            className="mt-8 text-center"
-          >
-            <h3 className="text-5xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              18+
-            </h3>
-            <p className="text-gray-400">Years of Learning</p>
-          </motion.div>
+            {/* Animated Counter */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 1.5, delay: 0.5 }}
+              className="mt-4 lg:mt-8 text-center"
+            >
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                18+
+              </h3>
+              <p className="text-sm sm:text-base text-gray-400">Years of Learning</p>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
 

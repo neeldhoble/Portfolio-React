@@ -1,72 +1,13 @@
-// import React from 'react'
-// import logo from "../assets/logo.png"
-// import linkedin from "../assets/linkedin.png"
-// import insta from "../assets/insta.png"
-// import github from "../assets/github.png"
-// import resume from "../assets/resume.png"
-
-// const Navbar = () => {
-//   return (
-//     <div className='w-10/12 max-w-[1080px] mx-auto bg-black flex justify-between items-center'>
-//         <div>
-//           <img src={logo} alt="logo" className='w-[60px]'/>
-//         </div>
-
-//         <div>
-          
-//           <div className='flex items-center gap-5'>
-//               <a href="https://www.linkedin.com/in/neel-dhoble-965388257/">
-//                 <img src={linkedin} alt="linkedin" className='w-[30px]'/>
-//               </a>
-
-//               <a href="">
-//                 <img src={github} alt="insta" className='w-[30px]'/>
-//               </a>
-
-//               <a href="">
-//                 <img src={insta} alt="insta" className='w-[30px]'/>
-//               </a>
-
-//               <a href="">
-//                 <img src={resume} alt="insta" className='w-[20px]'/>
-//               </a>
-
-
-
-              
-//           </div>
-
-//         </div>
-//     </div>
-//   )
-// }
-
-// export default Navbar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState, useEffect } from "react";
-import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaInstagram, FaBars, FaTimes } from "react-icons/fa";
 import { FiDownload } from "react-icons/fi";
 import logo from "../assets/logo.png";
+import resume from "../assets/Neel Dhoble - Resume .pdf";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Scroll effect: change navbar style
   useEffect(() => {
@@ -79,6 +20,15 @@ const Navbar = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close mobile menu on desktop resize
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) setMobileMenuOpen(false);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   const navLinks = [
@@ -101,14 +51,11 @@ const Navbar = () => {
     >
       <div className="w-10/12 max-w-[1200px] mx-auto flex justify-between items-center py-4">
         {/* Logo */}
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          transition={{ type: "spring", stiffness: 300 }}
-        >
-          <img src={logo} alt="logo" className="w-[55px] cursor-pointer" />
-        </motion.div>
+        <h1 className="font-bold text-[30px] text-purple-600">
+          Port<span className="text-white">folio</span>
+        </h1>
 
-        {/* Nav Links */}
+        {/* Nav Links - Desktop */}
         <div className="hidden md:flex gap-8 text-white font-medium">
           {navLinks.map((link, index) => (
             <motion.a
@@ -124,8 +71,8 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Socials + Resume */}
-        <div className="flex items-center gap-5 text-white">
+        {/* Socials + Resume - Desktop */}
+        <div className="hidden md:flex items-center gap-5 text-white">
           <motion.a
             href="https://www.linkedin.com/in/neel-dhoble-965388257/"
             target="_blank"
@@ -152,15 +99,82 @@ const Navbar = () => {
 
           {/* Resume Button */}
           <motion.a
-            href="../assets/resume.pdf"
-            download
+            href={resume}
+            download="Neel_Dhoble_Resume.pdf"
             whileHover={{ scale: 1.05 }}
             className="px-4 py-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-xl flex items-center gap-2 shadow-md hover:shadow-lg transition-all"
           >
             Resume <FiDownload />
           </motion.a>
         </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-white text-2xl"
+          onClick={() => setMobileMenuOpen((v) => !v)}
+          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-menu"
+        >
+          {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      <motion.div
+        id="mobile-menu"
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: mobileMenuOpen ? 1 : 0, height: mobileMenuOpen ? "auto" : 0 }}
+        transition={{ duration: 0.25 }}
+        className="md:hidden bg-black/90 backdrop-blur-md border-t border-white/20"
+      >
+        <div className="px-6 py-4 space-y-4 text-right">
+          {navLinks.map((link, index) => (
+            <motion.a
+              key={index}
+              href={link.href}
+              className="block text-white font-medium py-2 hover:text-purple-400 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {link.name}
+            </motion.a>
+          ))}
+          <div className="flex items-center gap-6 pt-4 border-t border-white/20 justify-end">
+            <motion.a
+              href="https://www.linkedin.com/in/neel-dhoble-965388257/"
+              target="_blank"
+              whileHover={{ scale: 1.2 }}
+              className="text-white"
+            >
+              <FaLinkedin size={24} />
+            </motion.a>
+            <motion.a
+              href="https://github.com/neeldhoble"
+              target="_blank"
+              whileHover={{ scale: 1.2 }}
+              className="text-white"
+            >
+              <FaGithub size={24} />
+            </motion.a>
+            <motion.a
+              href="https://instagram.com/"
+              target="_blank"
+              whileHover={{ scale: 1.2 }}
+              className="text-white"
+            >
+              <FaInstagram size={24} />
+            </motion.a>
+            <motion.a
+              href={resume}
+              download="Neel_Dhoble_Resume.pdf"
+              whileHover={{ scale: 1.05 }}
+              className="px-4 py-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-xl flex items-center gap-2 shadow-md hover:shadow-lg transition-all text-sm"
+            >
+              Resume <FiDownload />
+            </motion.a>
+          </div>
+        </div>
+      </motion.div>
     </motion.nav>
   );
 };

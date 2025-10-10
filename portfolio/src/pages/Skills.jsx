@@ -184,7 +184,7 @@ const item = {
 
 const Skills = () => {
   return (
-    <div className="relative py-24 px-8 bg-black text-white overflow-hidden">
+    <div id="skills" className="relative py-24 px-8 bg-black text-white overflow-hidden">
       {/* Decorative Gradient Blob */}
       <div className="absolute -top-20 -left-20 w-96 h-96 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full blur-[120px] opacity-30 animate-pulse"></div>
 

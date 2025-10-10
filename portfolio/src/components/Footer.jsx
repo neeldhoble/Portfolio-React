@@ -228,19 +228,20 @@ const Footer = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 items-center">
         {/* Branding */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
+          className="text-center md:text-left"
         >
-          <h2 className="text-4xl font-extrabold mb-3 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-3 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
             🚀 Neel Dhoble
           </h2>
-          <p className="text-gray-400">
-            Merging MERN, AI & Cloud into real-world innovations ✨
+          <p className="text-gray-400 text-sm sm:text-base">
+            Merging MERN, AI & Cloud into real-world innovations 
           </p>
         </motion.div>
 
@@ -250,7 +251,7 @@ const Footer = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="flex flex-col space-y-3 text-lg font-medium text-center"
+          className="flex flex-col space-y-3 text-base sm:text-lg font-medium text-center md:text-left"
         >
           {["Home", "Skills", "Projects", "Blog", "Contact"].map((link, i) => (
             <motion.li
@@ -269,10 +270,10 @@ const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="flex flex-col items-center space-y-6"
+          className="flex flex-col items-center space-y-4 sm:space-y-6 md:col-span-2 lg:col-span-1"
         >
           {/* Floating Socials */}
-          <div className="flex space-x-6 text-3xl relative">
+          <div className="flex space-x-4 sm:space-x-6 text-2xl sm:text-3xl relative">
             {[FaGithub, FaLinkedin, FaTwitter, FaMedium].map((Icon, i) => (
               <motion.a
                 key={i}
@@ -295,7 +296,7 @@ const Footer = () => {
           <motion.button
             whileHover={{ scale: 1.1, rotate: 1 }}
             onClick={() => setShowCert(true)}
-            className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-pink-600 rounded-xl flex items-center gap-2 shadow-lg hover:shadow-pink-500/50 transition"
+            className="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-indigo-500 to-pink-600 rounded-xl flex items-center gap-2 shadow-lg hover:shadow-pink-500/50 transition text-sm sm:text-base"
           >
             <FaCertificate /> View Certificates
           </motion.button>
@@ -314,18 +315,18 @@ const Footer = () => {
 
       {/* Certificate Modal */}
       {showCert && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-2xl shadow-lg max-w-4xl w-full relative">
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-lg max-w-4xl w-full relative max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setShowCert(false)}
               className="absolute top-2 right-3 text-black text-2xl hover:text-red-500"
             >
               ✖
             </button>
-            <h3 className="text-2xl font-bold mb-6 text-center text-black">
+            <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center text-black">
               📜 Certificates
             </h3>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {certificates.map((cert, idx) => (
                 <motion.div
                   key={idx}
@@ -336,9 +337,9 @@ const Footer = () => {
                   <img
                     src={cert.img}
                     alt={cert.title}
-                    className="rounded-md mb-2 h-32 w-full object-cover"
+                    className="rounded-md mb-2 h-24 sm:h-32 w-full object-cover"
                   />
-                  <p className="text-black text-sm font-semibold">{cert.title}</p>
+                  <p className="text-black text-xs sm:text-sm font-semibold">{cert.title}</p>
                 </motion.div>
               ))}
             </div>

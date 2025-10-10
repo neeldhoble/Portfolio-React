@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
 import HeroPage from './HeroPage'
 import Education from './Education'
 import Skills from './Skills'
